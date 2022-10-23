@@ -22,6 +22,7 @@ public class Desafio9 {
          //System.out.println("Digite o tamanho do Array: ");
          int N = teclado.nextInt();
          int [] numeros = new int[N];
+         teclado.close();     		
    
         for (i = 0; i < N; i++) numeros[i] = teclado.nextInt();
           	
@@ -39,7 +40,6 @@ public class Desafio9 {
         }
          
         for (i = 0; i < N; i++) System.out.println(numeros[i]);
-        teclado.close();     		
     }
          
 }
