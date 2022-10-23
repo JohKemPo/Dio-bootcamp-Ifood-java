@@ -3,17 +3,35 @@ package DesafioDeProjeto.src.br.com.dio.desafio.dominio;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.*;
 
 public class Dev {
     private String nome;
     private Set<Conteudo> conteudoInscrito = new LinkedHashSet<>();
     private Set<Conteudo> conteudoConcluidos = new LinkedHashSet<>();
 
-    public void inscreverBootcamp( Bootcamp bootcamp){}
+    public void inscreverBootcamp( Bootcamp bootcamp){
+        this.conteudoInscrito.addAll(bootcamp.getConteudos());
+        bootcamp.getDevsInscritos().add(this);
+    }
 
-    public void progredir(){}
+    public void progredir(){
+        Optional<Conteudo> conteudo = this.conteudoInscrito.stream().findFirst();
+        if(conteudo.isPresent()){
+            this.conteudoConcluidos.add(conteudo.get());
+            this.conteudoInscrito.remove(conteudo.get());
+        }else{
+            System.err.println("Non matricula");
+        }
+    }
 
-    public void calcularTotalXp(){}
+    public double calcularTotalXp(){
+        return this.conteudoConcluidos
+        .stream()
+        .mapToDouble(conteudo -> conteudo.calcularXp())
+        .sum();
+    }
 
 
     public String getNome() {
