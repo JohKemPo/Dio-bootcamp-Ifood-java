@@ -14,7 +14,7 @@ public class Desafio10 {
     public static void main(String[] args) {
         int n = Integer.parseInt(new Scanner(System.in).nextLine());
         int res = 0;
-        int cnt = 1;
+        //int cnt = 1;
         int tmp = n;
         n--;
 
